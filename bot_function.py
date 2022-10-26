@@ -103,7 +103,10 @@ def Bot(username, password, address,city,name,country, state,zip, state_check=Fa
 
 
     check=True
+    count=0
     while check:
+        if count==50:
+            break
         try:
             Country=Select(driver.find_element(By.ID,'PolarisSelect1'))#selecting country
             Country.select_by_visible_text(country)
@@ -111,6 +114,8 @@ def Bot(username, password, address,city,name,country, state,zip, state_check=Fa
         except NoSuchElementException:
             time.sleep(1)
             check=True
+            count+=1
+            print(count)
 
 
     while state_check:
